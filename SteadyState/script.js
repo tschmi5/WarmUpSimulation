@@ -15,7 +15,6 @@ function graph()
       total+= rolls[i];
       data.push(total/(i+1));
       console.log(i + " " + rolls[i] + " " + data[i]);
-
   }
   //rollNum.push(1000);
 
