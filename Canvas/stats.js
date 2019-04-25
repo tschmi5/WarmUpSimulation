@@ -15,16 +15,11 @@ window.onload = function () {
         console.log(i + " " + dps[i] + " " + avg[i]);
     }
     mew = total/MAX;
-    for (var i = 0; i < MAX; i++){
-        var variance = Math.pow(dps[i]-mew,2);
-        stdv += Math.sqrt(variance);
-    }
-    for (var i = 0; i < MAX; i++){
-        
-    }
     
     
     
+    
+  {  
 
 
     var chart = new CanvasJS.Chart("standardNormal", {
@@ -70,4 +65,31 @@ window.onload = function () {
     setInterval(function(){updateChart()}, updateInterval);
     
 }
+
+
+}
+
+function toStandardNormal(dps,mew,stdv){
+    for(var i = 0; i < MAX; i++){
+        data[i] = (mew - dps[i])/stdv;
+    }
+}
+function generateNums(dps,total,avg){
+    for (var i = 0; i < MAX; i++){
+        dps.push(Math.floor(Math.random() * (+7 - +1)) + 1);
+
+        total += dps[i];
+
+        avg[i] = (total/(i+1));
+
+    }
+}
+
+function getMew(dps){
+    var mew = 0;
+    for(var i = 0; i < MAX; i++){
+        mew = (mew - dps[i])/stdv;
+    }
+}
+
     
