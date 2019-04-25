@@ -4,6 +4,7 @@ window.onload = function(){
     var updateInterval2 = 100;
     var dataLength = MAX; // number of dataPoints visible at any point
     var diceOne = 0;
+    var avg = 0;
 
     //Unique Vars
 {
@@ -21,7 +22,7 @@ window.onload = function(){
     var dps2 = []; // dataPoints
     
     // Chart 3 Unique Vars
-    var yVal3 = 0; 
+    var yVal3 = 1; 
     var xVal3 = 0;
     var preData = 100;
     var total3 = 350;
@@ -56,31 +57,6 @@ window.onload = function(){
         }
     ]
     });
-    
-    var updateChart = function (count) {
-    
-        if(xVal1 < MAX){
-        count = count || 1;
-        
-            diceOne = Math.floor(Math.random() *(+7 - +1) + 1);
-            total1 = total1 + diceOne;
-            yVal1 =  (total1/xVal1) - 3.5;
-            
-
-            dps1.push({
-                x: xVal1,
-                y: yVal1
-            });
-            xVal1++;
-        chart.render();
-        } else {
-            return;
-        }
-    };
-}
-
-    //Chart 2 Dice
-{
     var chart2 = new CanvasJS.Chart("twoDice", {
         title :{
             text: "Variance"
@@ -104,29 +80,6 @@ window.onload = function(){
             ]
         
     });
-    var updateChart2 = function (count) {
-    
-        if(xVal2 < MAX){
-        count = count || 1;
-        
-            diceOne = Math.floor(Math.random() *(+7 - +1) + 1);
-            //diceTwo = Math.floor(Math.random() *(+1001 - +1) + 1);
-            total2 = total2 + diceOne;
-            var avg = total2/xVal2;
-            yVal2 =  Math.sqrt(Math.pow(((3.5 - avg)/3.5),2));
-            dps2.push({
-                x: xVal1,
-                y: yVal2
-                });
-            xVal2++;
-        chart2.render();
-        } else {
-            return;
-        }
-    };
-} 
-
-{
     var chart3 = new CanvasJS.Chart("preConfig", {
         title :{
             text: "Existing Data"
@@ -145,6 +98,45 @@ window.onload = function(){
         }
     ]
     });
+    
+    
+    var updateChart = function (count) {
+    
+        if(xVal1 < MAX){
+        count = count || 1;
+        
+            diceOne = Math.floor(Math.random() *(+7 - +1) + 1);
+            total1 = total1 + diceOne;
+            yVal1 =  (total1/xVal1) - 3.5;
+
+            total2 = total2 + diceOne;
+            var avg = total2/xVal2;
+            yVal2 =  Math.sqrt(Math.pow(((3.5 - avg)/3.5),2));
+
+            dps2.push({
+                x: xVal1,
+                y: yVal2
+                });       
+            
+
+            dps1.push({
+                x: xVal1,
+                y: yVal1
+            });
+            xVal2++;
+            xVal1++;
+        chart2.render();
+        chart.render();
+        } else {
+            return;
+        }
+    };
+}
+
+    //Chart 2 Dice
+
+
+{
     
     var updateChart3 = function (count) {
     
@@ -174,8 +166,6 @@ window.onload = function(){
     updateChart(dataLength);
     setInterval(function(){updateChart()}, updateInterval);
 
-    updateChart2(dataLength);
-    setInterval(function(){updateChart2()}, updateInterval);
 
     updateChart3(dataLength);
     setInterval(function(){updateChart3()}, updateInterval);
