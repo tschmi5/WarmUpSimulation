@@ -1,6 +1,6 @@
 window.onload({
 
-    
+        
         chart : new CanvasJS.Chart("dice", {
             title :{
                 text: "Dice Average"

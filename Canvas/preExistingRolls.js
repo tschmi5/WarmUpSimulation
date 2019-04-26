@@ -1,14 +1,16 @@
 function preExistingRolls(){
-    var MAX = 100;
+    var MAX = 1000;
     var updateInterval = 10;
     var dataLength = MAX; // number of dataPoints visible at any point
     var diceOne = 0;  
+    var initBatchSize = 100;
+    var initBatchAvg = 3.5;
     
      // Chart 3 Unique Vars
      var yVal3 = 1; 
      var xVal3 = 0;
-     var preData3 = 100;
-     var total3 = 350;
+     var preData3 = initBatchSize;
+     var total3 = initBatchAvg * initBatchSize;
      var dps3 = []; // dataPoints
  
  
@@ -16,8 +18,8 @@ function preExistingRolls(){
  
      var xVal4 = 1;
      var yVal4 = 0; 
-     var preDate4 = 100;
-     var total4 = 350;
+     var preDate4 = initBatchSize;
+     var total4 = initBatchAvg * initBatchSize;
      var dps4 = []; // dataPoints
 
      var chart3 = new CanvasJS.Chart("preConfig", {

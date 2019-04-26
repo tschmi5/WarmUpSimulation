@@ -1,6 +1,7 @@
- function diceCharts(){    
-    var MAX = 1000;
-    var updateInterval = 10;
+function runningCharts(){   
+    var cutoff = 100; 
+    var MAX = 1000 + cutoff;
+    var updateInterval = 50;
     var dataLength = MAX; // number of dataPoints visible at any point
     var diceOne = 0;    
 
@@ -25,13 +26,13 @@
     
     //Chart 1 Dice
 {
-    var chart = new CanvasJS.Chart("dice", {
+    var chart = new CanvasJS.Chart("runningChart", {
         title :{
             text: "Dice Average"
         },
         axisX: {
-            minimum: 0,
-            maximum: MAX
+            //minimum: 0,
+            //maximum: MAX
         },
         axisY: {
             maximum: 6,
@@ -43,7 +44,7 @@
         }
     ]
     });
-    var chart2 = new CanvasJS.Chart("diceStdv", {
+    var chart2 = new CanvasJS.Chart("runningChartStdv", {
         title :{
             text: "Dice Standard Deviation"
         },
@@ -51,7 +52,7 @@
             shared: true
         },
         axisX: {
-            minimum: 0,
+            //minimum: 0,
             maximum: MAX
         },
         axisY: {
@@ -94,6 +95,10 @@
                 y: yVal2
                 });  
             xVal2++;     
+            if(xVal1 > cutoff && xVal1 < cutoff * 3){
+                dps1.shift();
+                dps2.shift();
+            }
             chart2.render();
         
         } else {
