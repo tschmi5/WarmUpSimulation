@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
     <link rel="stylesheet" type="text/css" href="main.css">
     <script src="diceRoll.js"></script>
@@ -8,26 +9,27 @@
 
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </head>
+
 <body>
 
 
     <div class="chart">
-    <h1>Dice Rolling</h1>
-    <button class="button" onclick="diceCharts(1000,30)">Run</button>
+        <h1>Dice Rolling</h1>
+        <button class="button" onclick="diceCharts(1000,30)">Run</button>
     </div>
     <div id="dice" style="height: 275px; width:40%;display: inline-block"></div>
     <div id="diceStdv" style="height: 275px; width:40%;display: inline-block"></div>
 
     <div class="chart">
-    <h1>PreExisting Rolls</h1>
-    <button class="button" onclick="preExistingRolls(1000,30)">Run</button>
+        <h1>PreExisting Rolls</h1>
+        <button class="button" onclick="preExistingRolls(1000,30)">Run</button>
     </div>
     <div id="preConfig" style="height: 275px; width:40%;display: inline-block"></div>
     <div id="preConfigStdv" style="height: 275px; width:40%;display: inline-block"></div>
 
     <div class="chart">
         <h1>Running Chart</h1>
-        <button class="button" onclick="runningCharts(10000,30)">Run</button>
+        <button class="button" onclick="runningCharts(1000,30)">Run</button>
     </div>
     <div id="runningChart" style="height: 275px; width:30%;display: inline-block"></div>
     <div id="runningChartStdv" style="height: 275px; width:30%;display: inline-block"></div>
@@ -37,4 +39,5 @@
 
 
 </body>
+
 </html>

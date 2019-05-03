@@ -1,95 +1,28 @@
-window.onload = function () {
+
+
+var ss = require("simple-statistics");
+
+
     
-    var MAX = 1000;
-    var dps = []; // dataPoints
+    var MAX = 100;
+    var rolls = []; // dataPoints
     var avg = [];
+    var total = 0;
     var mew = 0;
     var stdv = 0;
 
     for (var i = 0; i < MAX; i++){
-        dps.push(Math.floor(Math.random() * (+7 - +1)) + 1);
-        total += dps[i];
+        rolls.push(Math.floor(Math.random() * (+7 - +1)) + 1);
+        total += rolls[i];
 
         avg[i] = (total/(i+1));
 
-        console.log(i + " " + dps[i] + " " + avg[i]);
+        console.log(i + " " + rolls[i] + " " + avg[i]);
     }
-    mew = total/MAX;
+    
+    var fit = ss.interquartileRange(rolls);
+    
+    console.log(fit);
     
     
-    
-    
-  {  
-
-
-    var chart = new CanvasJS.Chart("standardNormal", {
-        title :{
-            text: "Standard Normal"
-        },
-        axisY: {
-            maximum: 6,
-            minimum: 1
-        },      
-        data: [{
-            type: "line",
-            dataPoints: dps
-        }]
-    });
-    
-    var xVal = 1;
-    var yVal = 0; 
-    var updateInterval = .1;
-    var dataLength = 20; // number of dataPoints visible at any point
-    
-    
-    var updateChart = function (count) {
-    
-        if(xVal < 100){
-        count = count || 1;
-        
-            roll = Math.floor(Math.random() *(+7 - +1) + 1);
-            total = total + roll;
-            yVal =  total/xVal;
-            dps.push({
-                x: xVal,
-                y: yVal
-            });
-            xVal++;
-        chart.render();
-        } else {
-            return;
-        }
-    };
-    
-    updateChart(dataLength);
-    setInterval(function(){updateChart()}, updateInterval);
-    
-}
-
-
-}
-
-function toStandardNormal(dps,mew,stdv){
-    for(var i = 0; i < MAX; i++){
-        data[i] = (mew - dps[i])/stdv;
-    }
-}
-function generateNums(dps,total,avg){
-    for (var i = 0; i < MAX; i++){
-        dps.push(Math.floor(Math.random() * (+7 - +1)) + 1);
-
-        total += dps[i];
-
-        avg[i] = (total/(i+1));
-
-    }
-}
-
-function getMew(dps){
-    var mew = 0;
-    for(var i = 0; i < MAX; i++){
-        mew = (mew - dps[i])/stdv;
-    }
-}
-
     

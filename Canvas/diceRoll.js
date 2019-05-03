@@ -28,8 +28,8 @@
                  text: "Dice Average"
              },
              axisX: {
-                 //minimum: 0,
-                 //maximum: MAX
+                 minimum: 0,
+                 maximum: MAX
              },
              axisY: {
                  maximum: 6,
@@ -48,8 +48,8 @@
                  shared: true
              },
              axisX: {
-                 //minimum: 0,
-                 //maximum: MAX
+                 minimum: 0,
+                 maximum: MAX
              },
              axisY: {
                  maximum: 1,
