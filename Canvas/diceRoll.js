@@ -52,7 +52,7 @@
                  maximum: MAX
              },
              axisY: {
-                 maximum: 1,
+                 maximum: 0.5,
                  minimum: 0
              },
              data: [{
@@ -109,7 +109,8 @@
                      });
                  }
                  xVal2++;
-                 chart2.render();
+                chart2.render();
+                 
 
              } else {
                  return;
@@ -121,7 +122,7 @@
      setInterval(function () {
          updateDiceCharts()
      }, updateInterval);
-
+    
 
 
 

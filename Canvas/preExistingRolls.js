@@ -1,7 +1,7 @@
 function preExistingRolls(MAX, updateInterval) {
     var dataLength = MAX; // number of dataPoints visible at any point
     var diceOne = 0;
-    var initBatchSize = 100;
+    var initBatchSize = 1000;
     var initBatchAvg = 3.5;
 
     // Chart 3 Unique Vars
@@ -49,7 +49,7 @@ function preExistingRolls(MAX, updateInterval) {
             maximum: MAX
         },
         axisY: {
-            maximum: 1,
+            maximum: 0.5,
             minimum: 0
         },
         data: [{
@@ -60,61 +60,59 @@ function preExistingRolls(MAX, updateInterval) {
     });
 
 
-    {
+    var updatePreconfigCharts = function (count) {
 
-        var updatePreconfigCharts = function (count) {
+        if (xVal1 < MAX) {
+            count = count || 1;
 
-            if (xVal1 < MAX) {
-                count = count || 1;
+            diceOne = Math.floor(Math.random() * (+7 - +1) + 1);
+            total1 = total1 + diceOne;
+            yVal1 = (total1 / (xVal1 + preData1));
 
-                diceOne = Math.floor(Math.random() * (+7 - +1) + 1);
-                total1 = total1 + diceOne;
-                yVal1 = (total1 / (xVal1 + preData1));
-
-                if ((xVal1 % (MAX / 10) == 0 && xVal1 > 0) || xVal1 == MAX - 1) {
-                    dps1.push({
-                        x: xVal1,
-                        y: yVal1,
-                        indexLabel: yVal1.toFixed(3).toString(),
-                        markerColor: "green",
-                        markerType: "triangle"
-                    });
-                } else {
-                    dps1.push({
-                        x: xVal1,
-                        y: yVal1
-                    });
-                }
-                xVal1++;
-                chart1.render();
-
-                total2 = total2 + diceOne;
-                avg4 = total2 / (xVal2 + preDate2);
-                yVal2 = Math.sqrt(Math.pow(((3.5 - avg4) / 3.5), 2));
-
-
-                if ((xVal2 % (MAX / 10) == 0 && xVal2 > 0) || xVal2 == MAX - 1) {
-                    dps2.push({
-                        x: xVal2,
-                        y: yVal2,
-                        indexLabel: yVal2.toFixed(3).toString(),
-                        markerColor: "green",
-                        markerType: "triangle"
-                    });
-                } else {
-                    dps2.push({
-                        x: xVal2,
-                        y: yVal2
-                    });
-                }
-
-                xVal2++;
-                chart2.render();
+            if ((xVal1 % (MAX / 10) == 0 && xVal1 > 0) || xVal1 == MAX - 1) {
+                dps1.push({
+                    x: xVal1,
+                    y: yVal1,
+                    indexLabel: yVal1.toFixed(3).toString(),
+                    markerColor: "green",
+                    markerType: "triangle"
+                });
             } else {
-                return;
+                dps1.push({
+                    x: xVal1,
+                    y: yVal1
+                });
             }
-        };
-    }
+            xVal1++;
+            chart1.render();
+
+            total2 = total2 + diceOne;
+            avg4 = total2 / (xVal2 + preDate2);
+            yVal2 = Math.sqrt(Math.pow(((3.5 - avg4) / 3.5), 2));
+
+
+            if ((xVal2 % (MAX / 10) == 0 && xVal2 > 0) || xVal2 == MAX - 1) {
+                dps2.push({
+                    x: xVal2,
+                    y: yVal2,
+                    indexLabel: yVal2.toFixed(3).toString(),
+                    markerColor: "green",
+                    markerType: "triangle"
+                });
+            } else {
+                dps2.push({
+                    x: xVal2,
+                    y: yVal2
+                });
+            }
+
+            xVal2++;
+            chart2.render();
+        } else {
+            return;
+        }
+    };
+
 
     updatePreconfigCharts(dataLength);
     setInterval(function () {
